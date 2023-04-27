@@ -21,5 +21,10 @@ if st.button("Calculate"):
         with st.spinner("Wait for calculating how close"):
             similarity = sts_inference(sentence1, sentence2)
 
-        with st.container():
-            placeholder.success(f"Two sentences are {similarity}% similar.")
+        if similarity >= 0:
+            with st.container():
+                placeholder.success(f"Two sentences are {similarity}% similar.")
+        else:
+            if similarity == -1:
+                with st.container():
+                    placeholder.error(f"No checkpoint file!!")

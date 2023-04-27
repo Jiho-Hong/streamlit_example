@@ -1,6 +1,7 @@
 import transformers
 import torch
 import pytorch_lightning as pl
+import os
 
 
 class Dataset(torch.utils.data.Dataset):
@@ -75,6 +76,9 @@ def sts_inference(sentence1, sentence2):
     trainer = pl.Trainer(accelerator='cpu')
 
     model_file_path = "./model/monologg-koelectra-base-v3-discriminator-sts-epoch=0-val_pearson=0.995.ckpt"
+    if os.path.isfile(model_file_path) == False:
+        return -1
+
     model = Model.load_from_checkpoint(model_file_path)
 
     model_name = "monologg/koelectra-base-v3-discriminator"
