@@ -74,10 +74,10 @@ class Model(pl.LightningModule):
 def sts_inference(sentence1, sentence2):
     trainer = pl.Trainer(accelerator='cpu')
 
-    model_file_path = "./model/snunlp-KR-ELECTRA-discriminator-sts-epoch=13-val_pearson=0.930.ckpt"
+    model_file_path = "./model/monologg-koelectra-base-v3-discriminator-sts-epoch=0-val_pearson=0.995.ckpt"
     model = Model.load_from_checkpoint(model_file_path)
 
-    model_name = "snunlp/KR-ELECTRA-discriminator"
+    model_name = "monologg/koelectra-base-v3-discriminator"
 
     dataloader = Dataloader(model_name, sentence1, sentence2)
 
